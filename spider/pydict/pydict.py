@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-__author__ = '孙振凯'
+
 import urllib.request
 import urllib.parse
 import json
