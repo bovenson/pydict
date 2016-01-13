@@ -1,6 +1,7 @@
 #!/usr/bin/python3
+# coding:utf-8
 from tkinter_funs_bovenson import *
-import turtle
+#import turtle
 import tkinter as tk
 
 class App(tk.Frame):
