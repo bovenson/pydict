@@ -43,7 +43,7 @@ class Translate:
         self.count= 0
         self.trans_source = ''
         self.offline_data = {}
-        self.save_data_limit_count = 10
+        self.save_data_limit_count = 5
         self.load_offline_data()
         pass
     def translate(self, content):

@@ -64,7 +64,7 @@ class App(tk.Frame):
     def createWidgets(self):
         pass
     def __del__(self):
-        self.cls_trans.load_offline_data()
+        self.cls_trans.save_offline_data_to_file()
         pass
 
 #创建应用
