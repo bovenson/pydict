@@ -13,9 +13,14 @@
 
 
 from cx_Freeze import setup, Executable
+import sys
+
+base = None
+if sys.platform == 'win32':
+    base = 'Win32GUI'
 
 executables = [
-    Executable('pydict-gui.py')
+    Executable('pydict-gui.py', base='Win32GUI')
 ]
 
 setup(name='在线翻译',
