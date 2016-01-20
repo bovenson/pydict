@@ -18,7 +18,9 @@ data['ue'] = 'UTF-8'
 data['action'] = 'FY_BY_CLICKBUTTON'
 data['typoResult'] = 'true'
 
+languages = ('中文', '英语', '俄语', '日语', '西班牙语', '韩语')
 language_map = {'ZH_CN':'中文', 'EN':'英语', 'RU':'俄语', 'JA':'日语', 'SP':'西班牙语', 'KR':'韩语'}
+language_map_reverse = {'中文':'ZH_CN', '英语':'EN', '俄语':'RU', '日语':'JA', '西班牙语':'sp', '韩语':'KR'}
 
 def formart_content(content):
     '''
@@ -46,9 +48,16 @@ class Translate:
         self.save_data_limit_count = 5
         self.load_offline_data()
         pass
-    def translate(self, content):
+    def translate(self, content=' ', type='auto'):
         '''翻译'''
+        data['type'] = type
         content = formart_content(content)
+        if len(content)==0:
+            print('没有输入内容')
+            res = DataStructure()
+            res.trans = '没有输入内容'
+            return res
+        # 自动离线查询结果
         if content not in self.offline_data:
             self.count += 1
             if (self.count >= self.save_data_limit_count):
@@ -66,6 +75,7 @@ class Translate:
                 res = DataStructure()
         if res == None:
             res = DataStructure()
+        print('完成一次查询:' + res.lang1 + '--->' + res.lang2 + ' 结果:' + res.trans)
         return res
     def load_offline_data(self):
         '''
@@ -93,6 +103,7 @@ class Translate:
         pass
     def online_trans(self, content):
         '''在线查询'''
+        res = None
         try:
             data['i'] = content
             urldata = urllib.parse.urlencode(data).encode('utf-8')
@@ -109,3 +120,7 @@ class Translate:
             res = None
         finally:
             return res
+        pass
+    def __del__(self):
+        self.save_offline_data_to_file()
+        pass
