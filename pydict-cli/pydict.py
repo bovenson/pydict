@@ -131,7 +131,7 @@ print('欢迎使用在线翻译工具\n支持的语言:')
 for each in language_map.values():
     print(each,end=' ')
 print('\nPowered by youdao')
-print('Bug report:szhkai@126.com')
+print('Bug report:szhkai@qq.com')
 load_offline_data()
 
 print('*********************************************\n')
